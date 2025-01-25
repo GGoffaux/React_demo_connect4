@@ -1,4 +1,4 @@
-function GameOver({ winner , onRestart }) {
+function Gameover({ winner , onRestart }) {
   return (
     <div id="game-over">
       {winner && <p>Game Over ! : {winner} won ! </p>}
@@ -10,4 +10,4 @@ function GameOver({ winner , onRestart }) {
   );
 }
 
-export default GameOver;
+export default Gameover;

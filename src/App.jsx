@@ -5,7 +5,7 @@ import { WINNING_COMBINATIONS } from "./assets/winning_combinations";
 import Gameboard from "./components/Gameboard";
 import Player from "./components/Player";
 import Log from "./components/Log";
-import GameOver from "./components/Gameover";
+import Gameover from "./components/Gameover";
 
 const NCOL = 7;
 const NROW = 6;
@@ -144,7 +144,7 @@ function App() {
           />
         </ol>
         {(winner || hasDraw) && (
-          <GameOver winner={players[winner]} onRestart={handleRestart} />
+          <Gameover winner={players[winner]} onRestart={handleRestart} />
         )}
         <Gameboard
           onSelectSlot={handleSelectSlot}
