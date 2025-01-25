@@ -16,21 +16,22 @@ function Player({ initialName, token = "red", activePlayer , onChangeName}) {
     setPlayerName(event.target.value);
   }
 
-  let playerNameInfo = <span className="player-name">{playerName}</span>;
+  let playerNameInfo = <>
+  <span className="player-name">{playerName}</span> <span  className={`token_player token_${token}`}> </span>
+  </>;
   let buttonStatus = "Edit";
 
   if (isEditing) {
     playerNameInfo = (
-      <input type="text" required value={playerName} onChange={handleChange} />
+      <input className="player-input" type="text" required value={playerName} onChange={handleChange} />
     );
     buttonStatus = "Save";
   }
 
   return (
-    <li className={activePlayer == token ? "active" : undefined}>
+    <li className={activePlayer == token ? "player active" : "player"}>
       {playerNameInfo}
-      <span className={` player token_player token_${token}`}> </span>
-      <button onClick={handleEditing}> {buttonStatus} </button>
+      <button  onClick={handleEditing}> {buttonStatus} </button>
     </li>
   );
 }

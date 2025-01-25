@@ -3,7 +3,7 @@ import { useState } from "react";
 import { WINNING_COMBINATIONS } from "./assets/winning_combinations";
 
 import Gameboard from "./components/Gameboard";
-import Player from "./components/player";
+import Player from "./components/Player";
 import Log from "./components/Log";
 import GameOver from "./components/Gameover";
 

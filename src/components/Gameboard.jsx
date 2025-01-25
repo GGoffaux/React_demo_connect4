@@ -1,20 +1,21 @@
 import { useState } from "react";
 
-
-
 function Gameboard({ onSelectSlot, board, permission, winner }) {
-  
-const  [colForTokenToHover , setColForTokenToHover] = useState(-1);
+  const [colForTokenToHover, setColForTokenToHover] = useState(-1);
 
-function onHoverToken(way,index) {
-  if (way === "enter") {
-    setColForTokenToHover(index);
-  }  
-  if (way === "leave") {
-    setColForTokenToHover(-1);
+  function onHoverToken(way, index) {
+    if (way === "enter") {
+      setColForTokenToHover(index);
+    }
+    if (way === "leave") {
+      setColForTokenToHover(-1);
+    }
   }
-}
 
+  let isTouch = false;
+  if(window.matchMedia("(pointer: coarse)").matches) {
+    isTouch = true;
+}
 
   return (
     <ol id="game-board">
@@ -24,8 +25,8 @@ function onHoverToken(way,index) {
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
                 <button
-                  onMouseEnter={() => onHoverToken("enter",colIndex) }
-                  onMouseLeave={() => onHoverToken("leave",colIndex) }              
+                  onMouseEnter={() => onHoverToken("enter", colIndex)}
+                  onMouseLeave={() => onHoverToken("leave", colIndex)}
                   onClick={() => onSelectSlot(colIndex)}
                   className={`token_player ${
                     playerSymbol == "red"
@@ -34,12 +35,16 @@ function onHoverToken(way,index) {
                       ? "token_yellow"
                       : "token_default"
                   } ${
-                    ((permission[colIndex] === rowIndex) && ( colIndex === colForTokenToHover ))
-                    ? "token_hover"
-                    : ""
-                  } `}
-                  disabled={winner || (permission[colIndex] < 0)}
-                > </button>
+                    permission[colIndex] === rowIndex &&
+                    colIndex === colForTokenToHover &&
+                    isTouch === false
+                      ? "token_hover"
+                      : "token_boder_default"
+                  } ` }
+                  disabled={winner || permission[colIndex] < 0}
+                >
+                  {" "}
+                </button>
               </li>
             ))}
           </ol>
@@ -50,3 +55,4 @@ function onHoverToken(way,index) {
 }
 
 export default Gameboard;
+
